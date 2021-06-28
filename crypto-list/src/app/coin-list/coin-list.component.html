@@ -1,0 +1,39 @@
+<article class="page">
+  <mat-form-field class="coin-list">
+    <mat-label>Coins</mat-label>
+    <mat-chip-list #chipList aria-label="Coin selection">
+      <mat-chip
+        *ngFor="let coin of selectedCoins"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(coin)"
+      >
+        {{ coin }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="New coin..."
+        #coinInput
+        [formControl]="coinCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
+      <cdk-virtual-scroll-viewport [itemSize]="48" [style.height.px]="5 * 48">
+        <mat-option *cdkVirtualFor="let coin of filteredCoins" [value]="coin">
+          {{ coin }}
+        </mat-option>
+      </cdk-virtual-scroll-viewport>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <section class="container">
+    <app-card *ngFor="let coin of coins" [coin]="coin"></app-card>
+  </section>
+</article>

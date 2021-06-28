@@ -1,0 +1,24 @@
+.header {
+  width: 100%;
+  background-color: bisque;
+}
+
+.header-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.header-img {
+    width: 60px;
+    height: 60px;
+    padding-right: 12px;
+}
+
+.header-title {
+  display: inline-block;
+  margin: revert;
+}
